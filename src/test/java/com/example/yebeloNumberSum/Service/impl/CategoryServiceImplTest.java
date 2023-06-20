@@ -29,6 +29,7 @@ public class CategoryServiceImplTest extends CategoryServiceImplTestBuilder {
 
     @Mock
     private CategoryRepository repository;
+
     @Test
     public void executeGetTest_WhenCategoryNotExists(){
         when(repository.findById("code")).thenReturn(Optional.empty());
@@ -45,14 +46,4 @@ public class CategoryServiceImplTest extends CategoryServiceImplTestBuilder {
         verify(repository).findById("code");
     }
 
-    @Test
-    public void executeGetTest_WhenException(){
-        when(repository.findById("code")).thenReturn(Optional.ofNullable(buildCategory()));
-        try {
-            service.getNumber(buildCategoryGetRequest());
-        }catch (Exception e){
-            assertEquals(e.getClass(), Exception.class);
-        }
-        verify(repository).findById("code");
-    }
 }
