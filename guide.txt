@@ -14,3 +14,9 @@
 /saveCategory
     - This API takes the category code and number in the form a JSON object in request body
     - returns the same object if successful
+
+Additional Features
+
+- This project uses Swagger, in order to hit the APIs easily
+- DB persistence via postgres is achieved
+- Unit testing is done
