@@ -1,6 +1,6 @@
 1. Run the com/example/yebeloNumberSum/YebeloNumberSumApplication.java file to start the application
 
-2. Make sure no other service is using the localhost:8080 port
+2. Make sure no other service is using the 8080 port
 
 3. Access the APIs using this link, http://localhost:8080/swagger-ui/#/
 
