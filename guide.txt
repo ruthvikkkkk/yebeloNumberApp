@@ -17,6 +17,5 @@
 
 Additional Features
 
-- This project uses Swagger, in order to hit the APIs easily
-- DB persistence via postgres is achieved
-- Unit testing is done
+    - This project uses Swagger, in order to hit the APIs easily
+    - Lombok is used to reduce Boilerplate code

@@ -1,0 +1,8 @@
+
+Design Patterns:
+    Builder design pattern is used wherever necessary, it is achieved through Lombok.
+
+Persistence:
+    For persisting data, Postgres is used, the Category entity is used to define the schema
+
+    Table Schema
