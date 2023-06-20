@@ -27,6 +27,8 @@ public class CategoryServiceImpl implements CategoryService {
             while(getDigitSum(nextNumber) != 1){
                 nextNumber++;
             }
+            category.setNumber(nextNumber);
+            repository.saveAndFlush(category);
 
             return CategoryResponse.builder()
                     .oldValue(currentNumber)
@@ -55,6 +57,9 @@ public class CategoryServiceImpl implements CategoryService {
         while (number != 0) {
             sum += number % 10;
             number /= 10;
+        }
+        if(sum > 10){
+            return getDigitSum(sum);
         }
         return sum;
     }
