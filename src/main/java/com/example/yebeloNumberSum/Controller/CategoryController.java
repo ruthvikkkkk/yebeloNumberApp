@@ -22,7 +22,7 @@ public class CategoryController {
 
     @PostMapping("/fetchNextNumber")
     public ResponseEntity<CategoryResponse> getNewNumber(@RequestBody CategoryGetRequest request){
-        return new ResponseEntity<>(categoryService.getNumber(request.getCategoryCode()), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.getNumber(request), HttpStatus.OK);
     }
 
     @PostMapping("/saveCategory")

@@ -2,6 +2,7 @@ package com.example.yebeloNumberSum.Service.impl;
 
 import com.example.yebeloNumberSum.Entity.Category;
 import com.example.yebeloNumberSum.Repository.CategoryRepository;
+import com.example.yebeloNumberSum.Request.CategoryGetRequest;
 import com.example.yebeloNumberSum.Request.CategorySaveRequest;
 import com.example.yebeloNumberSum.Response.CategoryResponse;
 import com.example.yebeloNumberSum.Service.CategoryService;
@@ -18,8 +19,8 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     @Override
-    public synchronized CategoryResponse getNumber(String categoryCode) {
-        Category category = repository.findById(categoryCode).orElse(null);
+    public synchronized CategoryResponse getNumber(CategoryGetRequest request) {
+        Category category = repository.findById(request.getCategoryCode()).orElse(null);
         if(Objects.nonNull(category)){
             long currentNumber = category.getNumber();
             long nextNumber = currentNumber + 1;

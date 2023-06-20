@@ -19,8 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CategoryServiceImplTest extends CategoryServiceImplTestBuilder {
@@ -30,16 +29,10 @@ public class CategoryServiceImplTest extends CategoryServiceImplTestBuilder {
 
     @Mock
     private CategoryRepository repository;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        service = new CategoryServiceImpl();
-    }
     @Test
     public void executeGetTest_WhenCategoryNotExists(){
         when(repository.findById("code")).thenReturn(Optional.empty());
-        CategoryResponse response = service.getNumber("code");
+        CategoryResponse response = service.getNumber(buildCategoryGetRequest());
         assertEquals(response, buildResponseForNull());
         verify(repository).findById("code");
     }
@@ -47,8 +40,19 @@ public class CategoryServiceImplTest extends CategoryServiceImplTestBuilder {
     @Test
     public void executeGetTest_WhenCategoryExists(){
         when(repository.findById("code")).thenReturn(Optional.ofNullable(buildCategory()));
-        CategoryResponse response = service.getNumber("code");
+        CategoryResponse response = service.getNumber(buildCategoryGetRequest());
         assertEquals(response, buildResponse());
+        verify(repository).findById("code");
+    }
+
+    @Test
+    public void executeGetTest_WhenException(){
+        when(repository.findById("code")).thenReturn(Optional.ofNullable(buildCategory()));
+        try {
+            service.getNumber(buildCategoryGetRequest());
+        }catch (Exception e){
+            assertEquals(e.getClass(), Exception.class);
+        }
         verify(repository).findById("code");
     }
 }

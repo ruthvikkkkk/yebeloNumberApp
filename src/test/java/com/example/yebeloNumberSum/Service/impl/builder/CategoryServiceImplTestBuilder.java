@@ -1,15 +1,15 @@
 package com.example.yebeloNumberSum.Service.impl.builder;
 
 import com.example.yebeloNumberSum.Entity.Category;
+import com.example.yebeloNumberSum.Request.CategoryGetRequest;
 import com.example.yebeloNumberSum.Request.CategorySaveRequest;
 import com.example.yebeloNumberSum.Response.CategoryResponse;
 
 public class CategoryServiceImplTestBuilder {
 
-    protected CategorySaveRequest buildCategorySaveRequest(){
-        return CategorySaveRequest.builder()
+    protected CategoryGetRequest buildCategoryGetRequest(){
+        return CategoryGetRequest.builder()
                 .categoryCode("code")
-                .number(1L)
                 .build();
     }
 
