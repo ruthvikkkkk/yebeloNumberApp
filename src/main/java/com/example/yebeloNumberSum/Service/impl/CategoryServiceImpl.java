@@ -41,8 +41,8 @@ public class CategoryServiceImpl implements CategoryService {
                     .build();
         }
         return CategoryResponse.builder()
-                .oldValue(-1L)
-                .newValue(-1L)
+                .oldValue(0L)
+                .newValue(0L)
                 .build();
     }
 
