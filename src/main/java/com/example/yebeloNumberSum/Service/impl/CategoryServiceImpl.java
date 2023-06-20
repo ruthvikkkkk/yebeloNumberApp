@@ -20,6 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public synchronized CategoryResponse getNumber(CategoryGetRequest request) {
+        long startTime = System.currentTimeMillis();
         Category category = repository.findById(request.getCategoryCode()).orElse(null);
         if(Objects.nonNull(category)){
             long currentNumber = category.getNumber();
@@ -30,11 +31,13 @@ public class CategoryServiceImpl implements CategoryService {
             }
             category.setNumber(nextNumber);
             repository.saveAndFlush(category);
-
-            try {
-                Thread.sleep(10000);
-            }catch (Exception e){
-                e.printStackTrace();
+            long endTime = System.currentTimeMillis() - startTime;
+            if(endTime < 5000) {
+                try {
+                    Thread.sleep((5000-endTime));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             return CategoryResponse.builder()
                     .oldValue(currentNumber)
