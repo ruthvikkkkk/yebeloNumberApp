@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     @Override
-    public CategoryResponse getNumber(String categoryCode) {
+    public synchronized CategoryResponse getNumber(String categoryCode) {
         Category category = repository.findById(categoryCode).orElse(null);
         if(Objects.nonNull(category)){
             long currentNumber = category.getNumber();
@@ -30,6 +30,11 @@ public class CategoryServiceImpl implements CategoryService {
             category.setNumber(nextNumber);
             repository.saveAndFlush(category);
 
+            try {
+                Thread.sleep(10000);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return CategoryResponse.builder()
                     .oldValue(currentNumber)
                     .newValue(nextNumber)
@@ -58,7 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
             sum += number % 10;
             number /= 10;
         }
-        if(sum > 10){
+        if(sum >= 10){
             return getDigitSum(sum);
         }
         return sum;
