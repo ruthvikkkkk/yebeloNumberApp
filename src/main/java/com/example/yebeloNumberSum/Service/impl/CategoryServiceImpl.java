@@ -47,12 +47,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category save(CategorySaveRequest category) {
+    public synchronized Category save(CategorySaveRequest category) {
         return repository.save(
                 Category.builder()
                         .categoryCode(category.getCategoryCode())
                         .number(category.getNumber())
-                        .usersAccessing(0)
                         .build()
         );
     }

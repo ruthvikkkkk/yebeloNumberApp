@@ -20,7 +20,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/getNumber")
+    @PostMapping("/fetchNextNumber")
     public ResponseEntity<CategoryResponse> getNewNumber(@RequestBody CategoryGetRequest request){
         return new ResponseEntity<>(categoryService.getNumber(request.getCategoryCode()), HttpStatus.OK);
     }

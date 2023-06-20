@@ -26,6 +26,4 @@ public class Category {
     @Column(name = "number", nullable = false)
     private Long number;
 
-    @Column(name = "users_accessing", nullable = false)
-    private Integer usersAccessing;
 }
