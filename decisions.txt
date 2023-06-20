@@ -1,8 +1,22 @@
-
 Design Patterns:
     Builder design pattern is used wherever necessary, it is achieved through Lombok.
 
 Persistence:
     For persisting data, Postgres is used, the Category entity is used to define the schema
 
-    Table Schema
+    Table Schema:
+
+        Column     |          Type          | Collation | Nullable | Default
+    ---------------+------------------------+-----------+----------+---------
+     category_code | character varying(255) |           | not null |
+     number        | bigint                 |           | not null |
+    Indexes:
+        "category_pkey" PRIMARY KEY, btree (category_code)
+
+Future Enhancements:
+
+    - To further scale the project, a pub-sub model can be used to process the requests. Kafka, rabbiMQ or any other
+        message queue can be used.
+
+    - Redis can be used as a cache store, this cache can be used to maintain data of all the categories being accessed
+        by the users. This would help to maintain a lock on the data being accessed i.e. enable optimistic locking
