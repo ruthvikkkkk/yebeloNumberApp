@@ -2,6 +2,7 @@ package com.example.yebeloNumberSum.Service.impl;
 
 import com.example.yebeloNumberSum.Entity.Category;
 import com.example.yebeloNumberSum.Repository.CategoryRepository;
+import com.example.yebeloNumberSum.Request.CategorySaveRequest;
 import com.example.yebeloNumberSum.Response.CategoryResponse;
 import com.example.yebeloNumberSum.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,17 @@ public class CategoryServiceImpl implements CategoryService {
                 .oldValue(-1L)
                 .newValue(-1L)
                 .build();
+    }
+
+    @Override
+    public Category save(CategorySaveRequest category) {
+        return repository.save(
+                Category.builder()
+                        .categoryCode(category.getCategoryCode())
+                        .number(category.getNumber())
+                        .usersAccessing(0)
+                        .build()
+        );
     }
 
     private Long getDigitSum(Long number){

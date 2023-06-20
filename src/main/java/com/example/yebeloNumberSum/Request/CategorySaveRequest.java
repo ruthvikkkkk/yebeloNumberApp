@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryRequest {
+public class CategorySaveRequest {
 
     private String categoryCode;
+
+    private Long number;
 }
