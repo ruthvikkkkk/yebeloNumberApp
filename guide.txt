@@ -1,0 +1,16 @@
+1. Run the com/example/yebeloNumberSum/YebeloNumberSumApplication.java file to start the application
+
+2. Make sure no other service is using the localhost:8080 port
+
+3. Access the APIs using this link, http://localhost:8080/swagger-ui/#/
+
+4. There are two APIs, /fetchNextNumber and /saveCategory
+
+/fetchNextNumber
+    - This API, allows users to enter the category code in JSON body
+    - returns the old and new number if category code is present in DB
+    - returns 0, 0 as values for both old and new number if category is not present
+
+/saveCategory
+    - This API takes the category code and number in the form a JSON object in request body
+    - returns the same object if successful
